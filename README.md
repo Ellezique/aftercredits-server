@@ -10,3 +10,10 @@ Message belongs to user. Message belongs to card. ERD amended.
 1. rails g scaffold Cards imdb_id:string 
 2. rails g model Users username:string email:string password:string
 3. rails g scaffold Messages m_text:text user:references card:references
+
+
+Initial seeds file has created one card for development in the interim: imdb_id: tt0470752
+![PG Admin Screenshot showing Cards table with one seeded id](app/assets/images/pgadmin_screenshot.PNG)
+
+Expect this data: https://rapidapi.com/rapidapi/api/movie-database-imdb-alternative/
+![Screenshot of data for this imdb_id](app/assets/images/rapidapi_screenshot.PNG)
