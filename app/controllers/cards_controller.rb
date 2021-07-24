@@ -73,7 +73,11 @@ class CardsController < ApplicationController
   # private: taken out of private for accessibility
     # Use callbacks to share common setup or constraints between actions.
     def set_card
-      @card = Card.find(params[:id])
+      begin
+        @card = Card.find(params[:id])
+      rescue
+        render json: {error: "The movie or series that you are looking for does not exist "}, status: 404
+      end
     end
 
     private
