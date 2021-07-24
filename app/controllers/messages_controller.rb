@@ -4,6 +4,7 @@ class MessagesController < ApplicationController
   # GET /messages or /messages.json
   def index
     @messages = Message.all
+    render json: @messages
   end
 
   # GET /messages/1 or /messages/1.json
@@ -33,6 +34,7 @@ class MessagesController < ApplicationController
       end
     end
   end
+
 
   # PATCH/PUT /messages/1 or /messages/1.json
   def update

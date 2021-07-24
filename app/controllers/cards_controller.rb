@@ -4,6 +4,7 @@ class CardsController < ApplicationController
   # GET /cards or /cards.json
   def index
     @cards = Card.all
+    render json: @cards
   end
 
   # GET /cards/1 or /cards/1.json
@@ -21,17 +22,28 @@ class CardsController < ApplicationController
 
   # POST /cards or /cards.json
   def create
-    @card = Card.new(card_params)
-
-    respond_to do |format|
-      if @card.save
-        format.html { redirect_to @card, notice: "Card was successfully created." }
-        format.json { render :show, status: :created, location: @card }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @card.errors, status: :unprocessable_entity }
-      end
+    @card = Card.create(card_params)
+    if @card.errors.any?
+      render json: @card.errors, status: :unprocessable_entity
+    else
+      render json @card, status: 201
     end
+  end
+  #   @card = Card.new(card_params)
+
+  #   respond_to do |format|
+  #     if @card.save
+  #       format.html { redirect_to @card, notice: "Card was successfully created." }
+  #       format.json { render :show, status: :created, location: @card }
+  #     else
+  #       format.html { render :new, status: :unprocessable_entity }
+  #       format.json { render json: @card.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
+  private 
+  def card_params
+    params.require(:card).permit(:imdb_id)
   end
 
   # PATCH/PUT /cards/1 or /cards/1.json
