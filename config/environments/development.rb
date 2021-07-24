@@ -1,6 +1,10 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
+
+#added from https://guides.rubyonrails.org/api_app.html to change existing app to api app
+config.debug_exception_response_format = :api
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded any time
@@ -13,6 +17,7 @@ Rails.application.configure do
 
   # Show full error reports.
   config.consider_all_requests_local = true
+
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.

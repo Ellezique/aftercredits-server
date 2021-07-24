@@ -9,9 +9,9 @@ Rails.application.routes.draw do
     post '/cards', to: 'cards#create'
     # If using cards/param, then enter that above cards/:id/
     get '/cards/:id', to: 'cards#show'
-    put '/cards/:id', to: "messages#update"
-    delete '/cards/:id', to: "messages#destroy"
-  end
+    put '/cards/:id', to: "cards#update"
+    delete '/cards/:id', to: "cards#destroy"
+end
 
   # get '/messages', to: 'messages#index'
   # post '/messages', to: 'messages#create'
