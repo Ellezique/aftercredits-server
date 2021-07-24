@@ -1,4 +1,6 @@
 class MessagesController < ApplicationController
+  before_action :authenticate_user, except: [:index, :show]
+  before_action :check_ownership, only: [:destroy, :update]
   before_action :set_message, only: %i[ show edit update destroy ]
 
   # GET /messages or /messages.json
@@ -22,7 +24,8 @@ class MessagesController < ApplicationController
 
   # POST /messages or /messages.json
   def create
-    @message = Message.new(message_params)
+    # @message = Message.new(message_params)
+    @message = current_user.messages.create(message_params)
 
     respond_to do |format|
       if @message.save
@@ -34,7 +37,6 @@ class MessagesController < ApplicationController
       end
     end
   end
-
 
   # PATCH/PUT /messages/1 or /messages/1.json
   def update
@@ -55,6 +57,14 @@ class MessagesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to messages_url, notice: "Message was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+
+  def check_ownership
+    if !current_user.isAdmin
+        if current_user.id != @message.user.id
+            render json: {error: "not allowed to do that"}
+        end
     end
   end
 

@@ -11,8 +11,10 @@ Rails.application.routes.draw do
     get '/cards/:id', to: 'cards#show'
     put '/cards/:id', to: "cards#update"
     delete '/cards/:id', to: "cards#destroy"
-end
+  end
 
-  # get '/messages', to: 'messages#index'
-  # post '/messages', to: 'messages#create'
+  get '/messages', to: 'messages#index'
+  post '/messages', to: 'messages#create'
+  put '/messages/:id', to: 'messages#update'
+  delete '/messages/:id', to: 'messages#destroy'
 end
