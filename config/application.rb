@@ -21,6 +21,7 @@ Bundler.require(*Rails.groups)
 
 module AftercreditsServer
   class Application < Rails::Application
+    config.api_only = true #added to change existing application to API application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
