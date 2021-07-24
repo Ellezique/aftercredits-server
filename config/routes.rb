@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   post '/cards', to: 'cards#create'
   get '/messages', to: 'messages#index'
   post '/messages', to: 'messages#create'
+  put '/messages/:id', to: 'messages#update'
+  delete '/messages/:id', to: 'messages#destroy'
 end
