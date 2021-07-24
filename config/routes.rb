@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  resources :messages
-  resources :cards
+  # resources :messages
+  # resources :cards
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   scope '/cardapi' do #http://localhost:3000/cardapi/cards
@@ -12,6 +13,6 @@ Rails.application.routes.draw do
     delete '/cards/:id', to: "messages#destroy"
   end
 
-  get '/messages', to: 'messages#index'
-  post '/messages', to: 'messages#create'
+  # get '/messages', to: 'messages#index'
+  # post '/messages', to: 'messages#create'
 end
