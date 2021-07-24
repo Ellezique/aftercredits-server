@@ -3,7 +3,8 @@ class MessagesController < ApplicationController
 
   # before_action :authenticate_user, except: [:index, :show]
   # before_action :check_ownership, only: [:destroy, :update]
-  before_action :set_message, only: %i[ show edit update destroy ]
+  #before_action :set_message, only: %i[ show update destroy ] 
+  before_action :set_message, only: [:show] #before showing message, find it by id.
 
   # GET /messages or /messages.json
   def index
@@ -59,6 +60,7 @@ class MessagesController < ApplicationController
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @message.errors, status: :unprocessable_entity }
       end
+    end
   end
 
   # DELETE /messages/1 or /messages/1.json
@@ -80,11 +82,11 @@ class MessagesController < ApplicationController
 
 
     # Use callbacks to share common setup or constraints between actions.
-    def set_message # not private: taken out of private for accessibility
+    def set_message # not private: taken out of private for accessibility. Find message by id.
       begin
         @message = Message.find(params[:id])
       rescue
-        render json: {error: "The message you are looking for does not exist "}, status: 404
+        render json: {error: "The message you are looking for does not exist"}, status: 404
       end
     end
 
