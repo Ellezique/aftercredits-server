@@ -4,7 +4,7 @@ class MessagesController < ApplicationController
   # before_action :authenticate_user, except: [:index, :show]
   # before_action :check_ownership, only: [:destroy, :update]
   before_action :set_message, only: %i[ show update destroy ] 
-  #before_action :set_message, only: [:show] #before showing message, find it by id.
+  #before_action :set_message, only: [:show, :update, :destroy] #before showing message, find it by id.
 
   # GET /messages or /messages.json
   def index
@@ -72,10 +72,11 @@ class MessagesController < ApplicationController
   # DELETE /messages/1 or /messages/1.json
   def destroy
     @message.delete
-    respond_to do |format|
-      format.html { redirect_to messages_url, notice: "Message was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    render json: {message: "Message successfully deleted."}, status: 204
+    # respond_to do |format|
+    #   format.html { redirect_to messages_url, notice: "Message was successfully deleted." }
+    #   format.json { head :no_content }
+    # end
   end
 
   # def check_ownership
