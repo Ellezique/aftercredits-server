@@ -8,10 +8,10 @@ class MessagesController < ApplicationController
 
   # GET /messages or /messages.json
   def index
-    @messages = Message.all
+    # @messages = Message.all
     # render json: @messages
     # @messages = Message.all      #NOT ORDERED
-    # @messages = Message.order('updated_at DESC') # Can INSTEAD, order messages by most recent message created on top
+    @messages = Message.order('updated_at DESC') # Can INSTEAD, order messages by most recent message on top
     render json: @messages
   end
 
@@ -65,7 +65,7 @@ class MessagesController < ApplicationController
     if @message.errors.any?
       render json: @message.errors, status: :unprocessable_entity
     else
-      render json: @message, status: 201
+      render json: @message, status: 200 #successful response for put. https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
     end
   end
 
