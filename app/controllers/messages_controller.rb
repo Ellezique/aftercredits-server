@@ -3,8 +3,8 @@ class MessagesController < ApplicationController
 
   # before_action :authenticate_user, except: [:index, :show]
   # before_action :check_ownership, only: [:destroy, :update]
-  #before_action :set_message, only: %i[ show update destroy ] 
-  before_action :set_message, only: [:show] #before showing message, find it by id.
+  before_action :set_message, only: %i[ show update destroy ] 
+  #before_action :set_message, only: [:show] #before showing message, find it by id.
 
   # GET /messages or /messages.json
   def index
@@ -52,20 +52,26 @@ class MessagesController < ApplicationController
 
   # PATCH/PUT /messages/1 or /messages/1.json
   def update
-    respond_to do |format|
-      if @message.update(message_params)
-        format.html { redirect_to @message, notice: "Message was successfully updated." }
-        format.json { render :show, status: :ok, location: @message }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @message.errors, status: :unprocessable_entity }
-      end
+    # respond_to do |format|
+    #   if @message.update(message_params)
+    #     format.html { redirect_to @message, notice: "Message was successfully updated." }
+    #     format.json { render :show, status: :ok, location: @message }
+    #   else
+    #     format.html { render :edit, status: :unprocessable_entity }
+    #     format.json { render json: @message.errors, status: :unprocessable_entity }
+    #   end
+    # end
+    @message.update(message_params)
+    if @message.errors.any?
+      render json: @message.errors, status: :unprocessable_entity
+    else
+      render json: @message, status: 201
     end
   end
 
   # DELETE /messages/1 or /messages/1.json
   def destroy
-    @message.destroy
+    @message.delete
     respond_to do |format|
       format.html { redirect_to messages_url, notice: "Message was successfully destroyed." }
       format.json { head :no_content }
