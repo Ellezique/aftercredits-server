@@ -70,9 +70,9 @@ class CardsController < ApplicationController
     end
   end
 
-  # private: taken out of private for accessibility
-    # Use callbacks to share common setup or constraints between actions.
-    def set_card
+ 
+    # Find and set card by id
+    def set_card  # not private: taken out of private for accessibility
       begin
         @card = Card.find(params[:id])
       rescue
@@ -80,9 +80,9 @@ class CardsController < ApplicationController
       end
     end
 
-    private
+    private 
     # Only allow a list of trusted parameters through.
-    def card_params
+    def card_params #Card params are set to private to prevent access from the outside
       params.require(:card).permit(:imdb_id)
     end
 end
