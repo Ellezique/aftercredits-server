@@ -3,7 +3,8 @@ class CardsController < ApplicationController
 
   # GET /cards or /cards.json
   def index
-    @cards = Card.all
+    # @cards = Card.all INSTEAD, order cards by most recent card created:
+    @cards = Card.order('updated_at DESC')
     render json: @cards
   end
 
@@ -18,8 +19,8 @@ class CardsController < ApplicationController
   end
 
   # GET /cards/1/edit
-  def edit
-  end
+  # def edit
+  # end
 
   # POST /cards or /cards.json
   def create
@@ -68,11 +69,13 @@ class CardsController < ApplicationController
 
   # DELETE /cards/1 or /cards/1.json
   def destroy
-    @card.destroy
+    @card.delete
     respond_to do |format|
-      format.html { redirect_to cards_url, notice: "Card was successfully destroyed." }
+      format.html { redirect_to cards_url, notice: "Movie/Series Card was successfully deleted." }
       format.json { head :no_content }
     end
+    # @card.delete
+    # render json: {messsage: "Message deleted"}, status: 204
   end
 
  
