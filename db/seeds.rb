@@ -24,6 +24,7 @@ end
 #Add messages 
 if Message.count == 0
   message1 = Message.create(m_text: "Dev themes are so entertaining", user_id: 1, card_id: 1)
+  message2 = Message.create(m_text: "Best movie ever!", user_id: 1, card_id: 1)
 end
 
 #Messages
