@@ -17,10 +17,12 @@ Rails.application.routes.draw do
     put '/messages/:id', to: 'messages#update'
     delete '/messages/:id', to: 'messages#destroy'
     
-    #USERS AUTH:
-    # scope '/auth' do
-    #   post '/sign_up', to: 'users#create'
-    # end
+    #USERS AUTH: http://localhost:3000/api/auth/
+    scope '/auth' do
+      #http://localhost:3000/api/auth/sign_up
+      post '/sign_up', to: 'users#create'  
+      post '/sign_in', to: 'users#sign_in' 
+    end
 
   end
 end
