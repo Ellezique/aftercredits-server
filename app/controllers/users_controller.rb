@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
   def sign_in
     # find user by email
-    @user = User.find_by_email(params{:email})
+    @user = User.find_by_email(params[:email])
     # authenticate username and token
     if @user && @user.authenticate(params[:password])
       auth_token = Knock::AuthToken.new payload: {sub: @user.id}

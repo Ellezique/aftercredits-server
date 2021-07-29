@@ -1,10 +1,10 @@
 class MessagesController < ApplicationController
-  # AUTH needs to be set up before user can be authenticated.
-
-  # before_action :authenticate_user, except: [:index, :show]
-  # before_action :check_ownership, only: [:destroy, :update]
+  # User needs to be authenticated to see ANY messages in chatroom:
+  before_action :authenticate_user
+  #  before_action :authenticate_user, except: [:index, :show]
   before_action :set_message, only: %i[ show update destroy ] 
   #before_action :set_message, only: [:show, :update, :destroy] #before showing message, find it by id.
+  before_action :check_ownership, only: [:destroy, :update]
 
   # GET /messages or /messages.json
   def index
@@ -42,7 +42,9 @@ class MessagesController < ApplicationController
     #     format.json { render json: @message.errors, status: :unprocessable_entity }
     #   end
     # end
-    @message = Message.create(message_params)
+
+    # @message = Message.create(message_params)
+    @message = current_user.messages.create(message_params)
     if @message.errors.any?
       render json: @message.errors, status: :unprocessable_entity
     else
@@ -79,13 +81,13 @@ class MessagesController < ApplicationController
     # end
   end
 
-  # def check_ownership
-  #   if !current_user.isAdmin
-  #       if current_user.id != @message.user.id
-  #           render json: {error: "not allowed to do that"}
-  #       end
-  #   end
-  # end
+  def check_ownership
+    # if !current_user.isAdmin
+        if current_user.id != @message.user.id
+            render json: {error: "You are not authorized to continue with this action."}
+        end
+    # end
+  end
 
 
     # Use callbacks to share common setup or constraints between actions.
