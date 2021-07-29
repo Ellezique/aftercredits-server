@@ -18,7 +18,7 @@ end
 
 #Add a user
 if User.count == 0
-  gizelle = User.create(username: "Gizelle", email: "gizelle205@hotmail.com")
+  gizelle = User.create(username: "Gizelle", email: "gizelle205@hotmail.com", password: "password123456", password_confirmation: "password123456")
 end
 
 #Add messages 
