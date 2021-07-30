@@ -18,6 +18,11 @@ class Message < ApplicationRecord
       posted: self.updated_at
     }
   end
+
+  #create method for index and my_messages in messages controller for:
+  # .each do |msg| 
+  #   @messages << Message.find_by(id: msg.id).transform_message
+  
 end
 
 
