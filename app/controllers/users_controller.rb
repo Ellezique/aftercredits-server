@@ -2,12 +2,13 @@ class UsersController < ApplicationController
 
   def create
     @user = User.create(user_params)
-    if @user.save
-      auth_token = Knock::AuthToken.new payload: {sub: @user.id}
-      render json: {username: @user.username, jwt: auth_token.token}, status: 201
-    else
-      render json: @user.errors, status: :unprocessable_entity  #status: 422 
-    end
+      if @user.save
+        auth_token = Knock::AuthToken.new payload: {sub: @user.id}
+        render json: {username: @user.username, jwt: auth_token.token}, status: 201
+      else
+          #puts @user.errors
+          render json: @user.errors, status: :unprocessable_entity #status: 422 
+      end
   end
 
   def sign_in

@@ -1,24 +1,8 @@
-# README
+Note:
+1. rails g model Cards imdb_id:string
+rails g controller Cards
+2. rails g model Users username:string email:string password_digest:string
+rails g controller Users
+3. rails g model Messages m_text:text user:references card:references
+rails g controller Messages
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
