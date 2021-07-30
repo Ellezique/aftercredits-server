@@ -8,10 +8,14 @@ class MessagesController < ApplicationController
   # GET /messages or /messages.json
   def index
     # @messages = Message.all      #NOT ORDERED
+    @messages = []
     if (params[:username]) #return all messages for this username & order messages by most recent message on top
       @messages = Message.find_by_user(params[:username]).order('updated_at DESC') 
     else #return all messages for all users
-      @messages = Message.order('updated_at DESC') # Can INSTEAD, order messages by most recent message on top
+      # Find a better solution to do e.g. write a method in model: NOT DRY see my_messages below
+      Message.order('updated_at DESC').each do |msg|
+        @messages << Message.find_by(id: msg.id).transform_message
+      end
     end
     render json: @messages
   end
@@ -67,7 +71,10 @@ class MessagesController < ApplicationController
 
   #Find all messages for current user & order messages by most recent message on top
   def my_messages 
-    @messages = Message.find_by_user(current_user.username).order('updated_at DESC') 
+    @messages = [] #see index above. not dry. has to go one by one and is therefore not effective. Replace with function in model.
+    Message.find_by_user(current_user.username).order('updated_at DESC').each do |msg| 
+      @messages << Message.find_by(id: msg.id).transform_message
+    end
     render json: @messages
   end
 
