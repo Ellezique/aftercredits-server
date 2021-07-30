@@ -13,18 +13,24 @@
 
 #Add a card
 if Card.count == 0
-  exmachina = Card.create(imdb_id: "tt0470752")
+  # exmachina tt0470752; devs tt8134186, halt and catch fire tt2543312, the matrix tt0133093
+  Card.create(imdb_id: "tt0470752") 
+  Card.create(imdb_id: "tt8134186") 
+  Card.create(imdb_id: "tt2543312") 
+  Card.create(imdb_id: "tt0133093") 
 end
 
 #Add a user
 if User.count == 0
-  gizelle = User.create(username: "Gizelle", email: "gizelle205@hotmail.com")
+  User.create(username: "Gizelle", email: "gizelle205@hotmail.com", password: "password123456", password_confirmation: "password123456")
+  User.create(username: "testuser", email: "test@email.com", password: "123456", password_confirmation: "123456")
 end
 
 #Add messages 
 if Message.count == 0
-  message1 = Message.create(m_text: "Dev themes are so entertaining", user_id: 1, card_id: 1)
-  message2 = Message.create(m_text: "Best movie ever!", user_id: 1, card_id: 1)
+   Message.create(m_text: "Dev themes are so entertaining", user_id: 1, card_id: 1)
+   Message.create(m_text: "Best movie ever!", user_id: 1, card_id: 1)
+   Message.create(m_text: "Im a test bot ..beep beep", user_id: 2, card_id: 1)
 end
 
 #Messages

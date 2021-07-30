@@ -1,0 +1,30 @@
+class UsersController < ApplicationController
+
+  def create
+    @user = User.create(user_params)
+      if @user.save
+        auth_token = Knock::AuthToken.new payload: {sub: @user.id}
+        render json: {username: @user.username, jwt: auth_token.token}, status: 201
+      else
+          #puts @user.errors
+          render json: @user.errors, status: :unprocessable_entity #status: 422 
+      end
+  end
+
+  def sign_in
+    # find user by email
+    @user = User.find_by_email(params[:email])
+    # authenticate username and token
+    if @user && @user.authenticate(params[:password])
+      auth_token = Knock::AuthToken.new payload: {sub: @user.id}
+      render json: {username: @user.username, jwt: auth_token.token}, status: 201
+    else
+      render json: {error: "username or password incorrect"}
+    end
+  end
+
+  def user_params
+    params.permit(:username, :email, :password, :password_confirmation)
+  end
+
+end

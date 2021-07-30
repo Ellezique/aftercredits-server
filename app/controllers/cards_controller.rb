@@ -39,7 +39,7 @@ class CardsController < ApplicationController
     if @card.errors.any?
       render json: @card.errors, status: :unprocessable_entity
     else
-      render json @card, status: 201
+      render json: @card, status: 201
     end
   end
 

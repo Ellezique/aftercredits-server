@@ -12,10 +12,19 @@ Rails.application.routes.draw do
   #MESSAGES API: This rails api sends data from the postgress database to the react front end http://localhost:3000/api/messages/
     get '/messages', to: 'messages#index'
     post '/messages', to: 'messages#create'
+    get '/messages/user', to: 'messages#my_messages'
     # If using messagess/param, then enter that above messages/:id
     get '/messages/:id', to: 'messages#show'
     put '/messages/:id', to: 'messages#update'
     delete '/messages/:id', to: 'messages#destroy'
+    
+    #USERS AUTH: http://localhost:3000/api/auth/
+    scope '/auth' do
+      #http://localhost:3000/api/auth/sign_up
+      post '/sign_up', to: 'users#create'  
+      post '/sign_in', to: 'users#sign_in' 
+    end
+
   end
 end
 
