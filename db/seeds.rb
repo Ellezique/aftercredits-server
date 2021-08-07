@@ -23,14 +23,14 @@ end
 #Add a user
 if User.count == 0
   User.create(username: "Gizelle", email: "gizelle205@hotmail.com", password: "password123456", password_confirmation: "password123456")
-  User.create(username: "testuser", email: "test@email.com", password: "123456", password_confirmation: "123456")
+  # User.create(username: "testuser", email: "test@email.com", password: "123456", password_confirmation: "123456")
 end
 
 #Add messages 
 if Message.count == 0
-   Message.create(m_text: "Dev themes are so entertaining", user_id: 1, card_id: 1)
-   Message.create(m_text: "Best movie ever!", user_id: 1, card_id: 1)
-   Message.create(m_text: "Im a test bot ..beep beep", user_id: 2, card_id: 1)
+  #  Message.create(m_text: "Dev themes are so entertaining", user_id: 1, card_id: 1)
+  #  Message.create(m_text: "Best movie ever!", user_id: 1, card_id: 1)
+  #  Message.create(m_text: "Im a test bot ..beep beep", user_id: 2, card_id: 1)
 end
 
 #Messages
