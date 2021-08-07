@@ -14,10 +14,10 @@
 #Add a card
 if Card.count == 0
   # exmachina tt0470752; devs tt8134186, halt and catch fire tt2543312, the matrix tt0133093
-  Card.create(imdb_id: "tt0470752") 
-  Card.create(imdb_id: "tt8134186") 
-  Card.create(imdb_id: "tt2543312") 
-  Card.create(imdb_id: "tt0133093") 
+  # Card.create(imdb_id: "tt0470752")
+  # Card.create(imdb_id: "tt8134186")
+  # Card.create(imdb_id: "tt2543312")
+  # Card.create(imdb_id: "tt0133093")
 end
 
 #Add a user
