@@ -12,7 +12,7 @@ class MessagesController < ApplicationController
     if (params[:username]) #return all messages for this username & order messages by most recent message on top
       @messages = Message.find_by_user(params[:username]).order('updated_at DESC') 
     else #return all messages for all users
-      # Find a better solution to do e.g. write a method in model: NOT DRY see my_messages below
+      # replace with a method in model (& my_messages/ below)
       Message.order('updated_at DESC').each do |msg|
         @messages << Message.find_by(id: msg.id).transform_message
       end
@@ -77,7 +77,6 @@ class MessagesController < ApplicationController
     end
     render json: @messages
   end
-
 
   # Use callbacks to share common setup or constraints between actions.
   def set_message # not private: taken out of private for accessibility. Find message by id.
