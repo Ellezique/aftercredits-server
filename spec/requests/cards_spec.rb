@@ -8,13 +8,16 @@ require 'rails_helper'
 
 describe 'Cards API', type: :request do
   describe 'GET /cards' do
-    it 'returns all Cards' do
+    before do
       FactoryBot.create(:card, imdb_id:"tt0470752")
       FactoryBot.create(:card, imdb_id:"tt8134186")
       FactoryBot.create(:card, imdb_id:"tt2543312")
       FactoryBot.create(:card, imdb_id:"tt0133093")
+    end
 
-      get '/api/cards'
+    it 'returns all Cards' do
+      
+      get '/api/cards/'
 
       #test for a successful 200 response
       expect(response).to have_http_status(:success)
@@ -34,13 +37,14 @@ describe 'Cards API', type: :request do
   end
 
   describe 'DELETE /cards/:id' do
+    let!(:card) { FactoryBot.create(:card, imdb_id:"tt0110912") }
+    
     it 'deletes a card' do
-      #create a factory bot card
-      card = FactoryBot.create(:card, imdb_id:"tt0133093")
-      #now delete the factory bot card
-      delete "api/cards/#{card.id}"
-
-      expect(response).to have_http_status(:not_found)
+      expect {
+        delete "/api/cards/#{card.id}"
+    }.to change { Card.count }.from(1).to(0)
+      
+      expect(response).to have_http_status(204)
     end
   end
 end
