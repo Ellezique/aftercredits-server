@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     # If using messagess/param, then enter that above messages/:id
     get '/messages/:id', to: 'messages#show'
     put '/messages/:id', to: 'messages#update'
-    delete '/messages/:id', to:  '
+    delete '/messages/:id', to: 'messages#destroy'
     
     #USERS AUTH: http://localhost:3000/api/auth/
     scope '/auth' do
