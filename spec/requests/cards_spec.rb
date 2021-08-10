@@ -35,9 +35,10 @@ describe 'Cards API', type: :request do
 
   describe 'DELETE /cards/:id' do
     it 'deletes a card' do
-      FactoryBot.create(:card, imdb_id:"tt0133093")
-
-      delete '/api/cards/1'
+      #create a factory bot card
+      card = FactoryBot.create(:card, imdb_id:"tt0133093")
+      #now delete the factory bot card
+      delete "api/cards/#{card.id}"
 
       expect(response).to have_http_status(:not_found)
     end
