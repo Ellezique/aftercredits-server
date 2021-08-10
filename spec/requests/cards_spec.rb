@@ -38,7 +38,7 @@ describe 'Cards API', type: :request do
 
   describe 'DELETE /cards/:id' do
     let!(:card) { FactoryBot.create(:card, imdb_id:"tt0110912") }
-    
+
     it 'deletes a card' do
       expect {
         delete "/api/cards/#{card.id}"
