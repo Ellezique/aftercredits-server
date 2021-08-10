@@ -6,3 +6,7 @@ rails g controller Users
 3. rails g model Messages m_text:text user:references card:references
 rails g controller Messages
 
+GEMS
+Development and test
+- Rspec
+- factory_bot
