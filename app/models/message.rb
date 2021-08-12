@@ -2,8 +2,6 @@ class Message < ApplicationRecord
   belongs_to :user
   belongs_to :card
   validates_presence_of :m_text
-  validates_presence_of :user_id
-  validates_presence_of :card_id
 
   # This method will find all of a user's messages by their username
    def self.find_by_user(username)
