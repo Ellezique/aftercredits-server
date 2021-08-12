@@ -8,8 +8,9 @@ end
 
 RSpec.describe 'Messages API', type: :request do
   before(:all) do
-    FactoryBot.create(:card, imdb_id:"tt1111111")
+    FactoryBot.create(:card, imdb_id:"tt0061184")
     @testUser = FactoryBot.create(:user, username: "Uniqueuser", email: "unique@email.com", password: "UNPassword123456", password_confirmation: "UNPassword123456")
+    # @testCard = FactoryBot.create(:card, imdb_id:"tt0061184")
     # FactoryBot.create(:message, m_text: "Dev themes are so entertaining", user_id: 1, card_id: 1)
     # FactoryBot.create(:message, m_text: "Best movie ever!", user_id: 1, card_id: 1)
     FactoryBot.create(:message, m_text: "Dev themes are so entertaining", user: @testUser)

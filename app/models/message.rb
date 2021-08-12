@@ -1,6 +1,6 @@
 class Message < ApplicationRecord
-  belongs_to :user
-  belongs_to :card
+  belongs_to :user, required: true
+  belongs_to :card, required: true
   validates_presence_of :m_text
 
   # This method will find all of a user's messages by their username

@@ -13,5 +13,14 @@ RSpec.describe Card, type: :model do
     subject.imdb_id = nil
     expect(subject).to_not be_valid
   end
+  #test associations and validations
+  describe "Associations" do
+    it { should have_many(:messages) }
+  end
+
+  describe "Validations" do
+    it { should validate_presence_of(:imdb_id) }
+  end
+  
 end
 
