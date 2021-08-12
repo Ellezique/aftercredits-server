@@ -1,12 +1,6 @@
 require 'rails_helper'
 
-# RSpec.describe "Cards", type: :request do
-#   describe "GET /index" do
-#     pending "add some examples (or delete) #{__FILE__}"
-#   end
-# end
-
-describe 'Cards API', type: :request do
+RSpec.describe 'Cards API', type: :request do
   describe 'GET /cards' do
     before do
       FactoryBot.create(:card, imdb_id:"tt0470752")
