@@ -30,7 +30,13 @@ end
 if Message.count == 0
    Message.create(m_text: "Dev themes are so entertaining", user_id: 1, card_id: 1)
    Message.create(m_text: "Best movie ever!", user_id: 1, card_id: 1)
-   Message.create(m_text: "Im a test bot ..beep beep", user_id: 2, card_id: 1)
+   Message.create(m_text: "Im a test bot ..beep beep", user_id: 1, card_id: 2)
+   Message.create(m_text: "Nulla rhoncus volutpat massa.", user_id: 1, card_id: 2)
+
+   Message.create(m_text: "Donec nulla ipsum, facilisis id nunc non, auctor mollis sapien. Nullam sit amet neque bibendum, varius urna ut, placerat magna. Nullam sed hendrerit metus, sit amet pellentesque arcu. In et cursus risus. Quisque nisi dui, maximus quis purus finibus, rhoncus tempus erat.", user_id: 2, card_id: 1)
+   Message.create(m_text: "Mauris fermentum mollis enim id fringilla. Suspendisse elementum, nisl feugiat ultricies gravida, elit urna egestas nisi, ut auctor nunc mi nec magna.", user_id: 2, card_id: 1)
+   Message.create(m_text: "Sed id ornare sapien.", user_id: 2, card_id: 2)
+   Message.create(m_text: "Praesent eu risus porttitor, ultricies augue et, gravida velit. Pellentesque non elementum urna, sit amet sagittis eros.", user_id: 2, card_id: 2)
 end
 
 #Messages
