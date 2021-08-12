@@ -7,8 +7,8 @@ RSpec.describe 'Messages API', type: :request do
       FactoryBot.create(:user, username: "testuser", email: "test@email.com", password: "Password123456", password_confirmation: "Password123456")
       # FactoryBot.create(:message, m_text: "Dev themes are so entertaining", user_id: 1, card_id: 1)
       # FactoryBot.create(:message, m_text: "Best movie ever!", user_id: 1, card_id: 1)
-      FactoryBot.create(:message, m_text: "Dev themes are so entertaining", user, card)
-      FactoryBot.create(:message, m_text: "Best movie ever!", user, card)
+      FactoryBot.create(:message, m_text: "Dev themes are so entertaining")
+      FactoryBot.create(:message, m_text: "Best movie ever!")
     end
     it 'returns all Messages' do
       
@@ -25,7 +25,7 @@ RSpec.describe 'Messages API', type: :request do
     it 'create a new message' do
       expect {
         # post '/api/messages', params: {message: {m_text: "This movie was so long! It just went on and on.", user_id: 1, card_id: 1}}
-        post '/api/messages', params: {message: {m_text: "This movie was so long! It just went on and on.", user, card}}
+        post '/api/messages', params: {message: {m_text: "This movie was so long! It just went on and on."}}
     }.to change { Message.count }.from(2).to(3) 
     #Database has x messages and one new message should be added to make x + 1.      
       expect(response).to have_http_status(:created)
@@ -34,7 +34,7 @@ RSpec.describe 'Messages API', type: :request do
 
   describe 'DELETE /messages/:id' do
     # let!(:message) { FactoryBot.create(:message, m_text: "Lorem ipsum dolor sit amet", user_id: 1, card_id: 1) }
-    let!(:message) { FactoryBot.create(:message, m_text: "Lorem ipsum dolor sit amet", user, card) }
+    let!(:message) { FactoryBot.create(:message, m_text: "Lorem ipsum dolor sit amet") }
     it 'deletes a message' do
       expect {
         delete "/api/messages/#{message.id}"
