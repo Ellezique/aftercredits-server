@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :card do
-    imdb_id { "tt4574334" }
+    imdb_id { "tt0000000" }
   end
 end

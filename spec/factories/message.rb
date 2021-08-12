@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :message do
-    m_text {"Dev themes are so entertaining"}
+    m_text {"gibberish"}
     user
     card
+  end
 end
