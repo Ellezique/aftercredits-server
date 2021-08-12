@@ -1,7 +1,6 @@
 class MessagesController < ApplicationController
   # User needs to be authenticated to see ANY messages in chatroom:
   before_action :authenticate_user #, except: [:index, :show]
-  #before_action :authenticate_user, except: [:index, :show]
   before_action :set_message, only: [:show, :update, :destroy] #before showing message, find it by id.
   before_action :check_ownership, only: [:destroy, :update]
 
@@ -12,7 +11,6 @@ class MessagesController < ApplicationController
     if (params[:username]) #return all messages for this username & order messages by most recent message on top
       @messages = Message.find_by_user(params[:username]).order('updated_at DESC') 
     else #return all messages for all users
-      # replace with a method in model (& my_messages/ below)
       Message.order('updated_at DESC').each do |msg|
         @messages << Message.find_by(id: msg.id).transform_message
       end
@@ -29,10 +27,6 @@ class MessagesController < ApplicationController
   def new
     @message = Message.new
   end
-
-  # GET /messages/1/edit
-  # def edit
-  # end
 
   # POST /messages or /messages.json
   def create

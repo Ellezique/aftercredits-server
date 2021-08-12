@@ -11,7 +11,6 @@ RSpec.describe Message, type: :model do
       user: @testUser, 
       card: @testCard)
   }
-
   it "is valid with valid attributes" do
     expect(subject).to be_valid
   end
@@ -20,15 +19,17 @@ RSpec.describe Message, type: :model do
     subject.m_text = nil
     expect(subject).to_not be_valid
   end
+
   it "is not valid without a user" do
     subject.user_id = nil
     expect(subject).to_not be_valid
   end
+  
   it "is not valid without a card" do
     subject.card_id = nil
     expect(subject).to_not be_valid
   end
-  #test associations and validations
+
   describe "Associations" do
     it { should belong_to(:card) }
     it { should belong_to(:user) }

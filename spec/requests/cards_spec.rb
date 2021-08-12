@@ -12,8 +12,7 @@ RSpec.describe 'Cards API', type: :request do
     it 'returns all Cards' do
       
       get '/api/cards/'
-
-      #test for a successful 200 response
+      #test for a successful status 200 response
       expect(response).to have_http_status(:success)
       #expect response body to return 4 card objects as created by facotry bot
       expect(JSON.parse(response.body).size).to eq(4)
