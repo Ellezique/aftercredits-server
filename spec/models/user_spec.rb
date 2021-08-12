@@ -17,16 +17,23 @@ RSpec.describe User, type: :model do
       subject.username = nil
       expect(subject).to_not be_valid
     end
+
     it "is not valid without an email" do
       subject.email = nil
       expect(subject).to_not be_valid
     end
+
     it "is not valid without a password" do
       subject.password = nil
       expect(subject).to_not be_valid
     end
-    #test association
+
     describe "Associations" do
       it { should have_many(:messages) }
+    end
+
+    describe "Validations" do
+      it { should validate_presence_of(:email) }
+      it { should validate_presence_of(:username) }
     end
   end
