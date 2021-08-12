@@ -16,4 +16,12 @@ RSpec.describe Message, type: :model do
     subject.m_text = nil
     expect(subject).to_not be_valid
   end
+  it "is not valid without a user" do
+    subject.user_id = nil
+    expect(subject).to_not be_valid
+  end
+  it "is not valid without a card" do
+    subject.card_id = nil
+    expect(subject).to_not be_valid
+  end
 end
