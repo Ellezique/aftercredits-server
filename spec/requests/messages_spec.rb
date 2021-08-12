@@ -5,10 +5,11 @@ RSpec.describe 'Messages API', type: :request do
     before do
       FactoryBot.create(:card, imdb_id:"tt0470752")
       FactoryBot.create(:user, username: "testuser", email: "test@email.com", password: "Password123456", password_confirmation: "Password123456")
-      FactoryBot.create(:message, m_text: "Dev themes are so entertaining", user_id: 1, card_id: 1)
-      FactoryBot.create(:message, m_text: "Best movie ever!", user_id: 1, card_id: 1)
+      # FactoryBot.create(:message, m_text: "Dev themes are so entertaining", user_id: 1, card_id: 1)
+      # FactoryBot.create(:message, m_text: "Best movie ever!", user_id: 1, card_id: 1)
+      FactoryBot.create(:message, m_text: "Dev themes are so entertaining", user, card)
+      FactoryBot.create(:message, m_text: "Best movie ever!", user, card)
     end
-
     it 'returns all Messages' do
       
       get '/api/messages/'
@@ -23,7 +24,8 @@ RSpec.describe 'Messages API', type: :request do
   describe 'POST /messages' do 
     it 'create a new message' do
       expect {
-        post '/api/messages', params: {message: {m_text: "This movie was so long! It just went on and on.", user_id: 1, card_id: 1}}
+        # post '/api/messages', params: {message: {m_text: "This movie was so long! It just went on and on.", user_id: 1, card_id: 1}}
+        post '/api/messages', params: {message: {m_text: "This movie was so long! It just went on and on.", user, card}}
     }.to change { Message.count }.from(2).to(3) 
     #Database has x messages and one new message should be added to make x + 1.      
       expect(response).to have_http_status(:created)
@@ -31,8 +33,8 @@ RSpec.describe 'Messages API', type: :request do
   end
 
   describe 'DELETE /messages/:id' do
-    let!(:message) { FactoryBot.create(:message, m_text: "Lorem ipsum dolor sit amet", user_id: 1, card_id: 1) }
-
+    # let!(:message) { FactoryBot.create(:message, m_text: "Lorem ipsum dolor sit amet", user_id: 1, card_id: 1) }
+    let!(:message) { FactoryBot.create(:message, m_text: "Lorem ipsum dolor sit amet", user, card) }
     it 'deletes a message' do
       expect {
         delete "/api/messages/#{message.id}"
