@@ -45,7 +45,7 @@ class MessagesController < ApplicationController
     if @message.errors.any?
       render json: @message.errors, status: :unprocessable_entity
     else
-      render json: @message, status: 200 #successful response for put. https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
+      render json: @message, status: 200 
     end
   end
 
@@ -65,7 +65,7 @@ class MessagesController < ApplicationController
 
   #Find all messages for current user & order messages by most recent message on top
   def my_messages 
-    @messages = [] #see index above. not dry. has to go one by one and is therefore not effective. Replace with function in model.
+    @messages = [] 
     Message.find_by_user(current_user.username).order('updated_at DESC').each do |msg| 
       @messages << Message.find_by(id: msg.id).transform_message
     end
