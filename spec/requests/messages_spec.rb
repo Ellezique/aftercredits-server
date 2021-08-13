@@ -32,7 +32,7 @@ RSpec.describe 'Messages API', type: :request do
     it 'create a new message' do
       expect {
         # post '/api/messages', params: {message: {m_text: "This movie was so long! It just went on and on.", user_id: 1, card_id: 1}}
-        post '/api/messages', params: {message: {m_text: "This movie was so long! It just went on and on."}, card_id: 1 }, headers: authenticated_header(@testUser)
+        post '/api/messages', headers: authenticated_header(@testUser), params: {message: {m_text: "This movie was so long! It just went on and on.", card_id: 1}}
       }.to change { Message.count }.from(2).to(3) 
     #Database has x messages and one new message should be added to make x + 1.      
       expect(response).to have_http_status(:created)
