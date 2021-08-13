@@ -20,10 +20,10 @@ if Card.count == 0
   # Card.create(imdb_id: "tt0133093")
 end
 
-#Add a user
+#Add Admin users
 if User.count == 0
-  User.create(username: "Gizelle", email: "gizelle205@hotmail.com", password: "Password123456", password_confirmation: "Password123456")
-  User.create(username: "testuser", email: "test@email.com", password: "Password123456", password_confirmation: "Password123456")
+  User.create(username: "Gizelle", email: "gizelle205@hotmail.com", password: "Password123456", password_confirmation: "Password123456", isAdmin: true)
+  User.create(username: "testuser", email: "test@email.com", password: "Password123456", password_confirmation: "Password123456", isAdmin: true)
 end
 
 #Add messages 
