@@ -13,3 +13,7 @@ T3A2-A Full Stack App (PART A): GitHub repository: https://github.com/Ellezique/
 Open the following url in your browser: http://localhost:8000/
 The page should load without error.
 
+To reset Heroku postgreSQL database
+-  `$ heroku pg:reset DATABASE_URL`
+-  `$ heroku run rake db:migrate ` 
+- `$ heroku run rake db:seed`
