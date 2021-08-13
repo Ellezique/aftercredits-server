@@ -1,6 +1,6 @@
 class CardsController < ApplicationController
   before_action :set_card, only: %i[ show edit update destroy ]
-  before_action :check_ownership, only: [:destroy]
+  before_action :check_ownership, only: [:destroy, :create]
   
   # GET /cards or /cards.json
   def index
