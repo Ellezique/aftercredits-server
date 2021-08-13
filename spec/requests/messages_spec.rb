@@ -10,7 +10,7 @@ RSpec.describe 'Messages API', type: :request do
   before(:all) do
     FactoryBot.create(:card, imdb_id:"tt0061184")
     @testUser = FactoryBot.create(:user, username: "Uniqueuser", email: "unique@email.com", password: "UNPassword123456", password_confirmation: "UNPassword123456")
-    # @testCard = FactoryBot.create(:card, imdb_id:"tt0061184")
+    @testCard = FactoryBot.create(:card, imdb_id:"tt0061184")
     # FactoryBot.create(:message, m_text: "Dev themes are so entertaining", user_id: 1, card_id: 1)
     # FactoryBot.create(:message, m_text: "Best movie ever!", user_id: 1, card_id: 1)
     FactoryBot.create(:message, m_text: "Dev themes are so entertaining", user: @testUser)
@@ -32,21 +32,18 @@ RSpec.describe 'Messages API', type: :request do
     it 'create a new message' do
       expect {
         # post '/api/messages', params: {message: {m_text: "This movie was so long! It just went on and on.", user_id: 1, card_id: 1}}
-        post '/api/messages', headers: authenticated_header(@testUser), params: {message: {m_text: "This movie was so long! It just went on and on.", card_id: 1}}
-      }.to change { Message.count }.from(2).to(3) 
+        post '/api/messages', headers: authenticated_header(@testUser), params: {message: {m_text: "This movie was so long! It just went on and on.", card_id: @testCard.id}}
+        pp response}.to change { Message.count }.from(2).to(3) 
     #Database has x messages and one new message should be added to make x + 1.      
       expect(response).to have_http_status(:created)
-      pp response
     end
   end
 
   # describe 'DELETE /messages/:id' do
-  #   # let!(:message) { FactoryBot.create(:message, m_text: "Lorem ipsum dolor sit amet", user_id: 1, card_id: 1) }
-  #   let!(:message) { FactoryBot.create(:message, m_text: "Lorem ipsum dolor sit amet") }
   #   it 'deletes a message' do
   #     expect {
-  #       delete "/api/messages/#{message.id}"
-  #   }.to change { Message.count }.from(1).to(0)
+  #       delete "/api/messages/#{@testCard.id}", headers: authenticated_header(@testUser)
+  #   }.to change { Message.count }.from(2).to(1)
       
   #     expect(response).to have_http_status(204)
   #   end
