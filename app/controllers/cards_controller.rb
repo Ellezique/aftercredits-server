@@ -1,6 +1,7 @@
 class CardsController < ApplicationController
   before_action :set_card, only: %i[ show edit update destroy ]
-
+  before_action :check_ownership, only: [:destroy, :create]
+  
   # GET /cards or /cards.json
   def index
     # @cards = Card.all INSTEAD, order cards by most recent card created:
@@ -47,7 +48,11 @@ class CardsController < ApplicationController
     @card.delete
     render json: {messsage: "Movie/Series Card was successfully deleted."}, status: 204
   end
-
+  def check_ownership
+    if !current_user.isAdmin
+      render json: {error: "You are not authorized to continue with this action."}
+    end
+ end
   # Find and set card by id
   def set_card  # not private: taken out of private for accessibility
     begin
