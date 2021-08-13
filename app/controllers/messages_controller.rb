@@ -56,11 +56,11 @@ class MessagesController < ApplicationController
   end
 
   def check_ownership
-    # if !current_user.isAdmin
+     if !current_user.isAdmin
         if current_user.id != @message.user.id
             render json: {error: "You are not authorized to continue with this action."}
         end
-    # end
+     end
   end
 
   #Find all messages for current user & order messages by most recent message on top
